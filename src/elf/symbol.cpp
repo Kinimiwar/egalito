@@ -345,6 +345,8 @@ SymbolList *SymbolList::buildAnySymbolList(ElfMap *elfMap,
     SymbolList *list = new SymbolList();
 #endif
 
+    list->sourceElfMap = elfMap;
+
     auto section = elfMap->findSection(sectionName);
     if(!section || section->getHeader()->sh_type != sectionType) {
         LOG(1, "Warning: no symbol table " << sectionName << " in ELF file");

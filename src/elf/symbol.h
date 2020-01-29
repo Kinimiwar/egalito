@@ -127,6 +127,8 @@ private:
     typedef std::map<std::string, Symbol *> MapType;
     MapType symbolMap;
     std::map<address_t, Symbol *> spaceMap;
+    // elfmap this symbol list was built from. this may be a separate symbol elfmap.
+    ElfMap *sourceElfMap;
 public:
     virtual ~SymbolList() {}
     bool add(Symbol *symbol, size_t index);
@@ -138,6 +140,8 @@ public:
 
     ListType::iterator begin() { return symbolList.begin(); }
     ListType::iterator end() { return symbolList.end(); }
+
+    ElfMap *getSourceElfMap() const { return sourceElfMap; }
 
     size_t estimateSizeOf(Symbol *symbol);
 
